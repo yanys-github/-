@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 包含头部信息用于适应不同设备 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--  定义web页面描述： -->
+    <meta name="description" content="">
+    <!--  定义页面作者： -->
+    <meta name="author" content="">
+    <!-- 定义文档关键词，用于搜索引擎： -->
+    <meta name="keyword" content="HTML, CSS, JavaScript">
+    <!-- 网页标题前的图标 -->
+    <link rel="shortcut icon" href="img/favicon.png">
+    <title>科目一主界面</title>
+    <!-- Icons -->
+    <!-- fa 图标库 -->
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/simple-line-icons.css" rel="stylesheet">
+    <!-- Main styles for this application -->
+    <link href="css/style.css" rel="stylesheet">
+
+</head>
+<body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
+<!-- 头部 -->
+<div class="headerpage"></div>
+<!-- 主体 -->
+<div id="app" class="app-body">
+    <!-- 侧边导航栏 -->
+    <div class="navpage"></div>
+    <!-- 中心内容 -->
+    <main class="main">
+        <!-- 当前位置 -->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">当前位置</li>
+            <li class="breadcrumb-item"><a href="first-main.html">首页</a>
+            </li>
+            <li v-if="idd==='1'" class="breadcrumb-item"><a href="course1-main.html">科目一</a>
+            </li>
+            <li v-else class="breadcrumb-item"><a href="course4-main.html">科目四</a>
+            </li>
+            <li class="breadcrumb-item active">错题</li>
+        </ol>
+        <!--每个界面代码添加位置-->
+        <div class="container-fluid">
+            <!--进度条-->
+            <div class="progress">
+                <div class="progress-bar bg-success" role="progressbar" :style="{width:(progress*100/size)+'%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                    完成的进度
+                </div>
+            </div>
+            <!--题目:单选题-->
+            <div v-if="size<=-1" class="jumbotron jumbotron-fluid mt-3 col-md-11">
+                <div class="col-lg-4 col-xm-12">
+                    <button @click="begin()" type="button" class="btn btn-danger btn-lg btn-block">开始做题</button>
+                </div>
+            </div>
+            <div v-if="progress<size" class="jumbotron jumbotron-fluid mt-3 col-md-11">
+                <div class="container" v-for="row in quiz">
+                    <div >
+                        <h3 class="display-7">{{row.problem}}</h3>
+                        <p>单选题</p>
+                        <hr class="my-2">
+                        <!--选项-->
+                        <div class="form-check my-2" @click="che(row.answer)">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="item" v-model="answer"  :value="itemsValue[0]">
+                                <span class="badge badge-pill badge-primary mx-3">
+                                {{itemsValue[0]}}
+                            </span>
+                                {{row.optionA}}
+                            </label>
+                        </div>
+                        <div class="form-check my-2" @click="che(row.answer)">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="item" v-model="answer"  :value="itemsValue[1]">
+                                <span class="badge badge-pill badge-primary mx-3">
+                                {{itemsValue[1]}}
+                            </span>
+                                {{row.optionB}}
+                            </label>
+                        </div>
+                        <div class="form-check my-2" @click="che(row.answer)">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="item" v-model="answer"  :value="itemsValue[2]">
+                                <span class="badge badge-pill badge-primary mx-3">
+                                {{itemsValue[2]}}
+                            </span>
+                                {{row.optionC}}
+                            </label>
+                        </div>
+                        <div class="form-check my-2" @click="che(row.answer)">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="item" v-model="answer"  :value="itemsValue[3]">
+                                <span class="badge badge-pill badge-primary mx-3">
+                                {{itemsValue[3]}}
+                            </span>
+                                {{row.optionD}}
+                            </label>
+                        </div>
+                    </div>
+                    <span>{{trueAnswer}}</span>
+                    <!--按钮-->
+                    <div class="row">
+                        <div class="col-lg-4 col-xm-12">
+                            <button @click="prev()" type="button" class="btn btn-danger btn-lg btn-block">上一题</button>
+                        </div>
+                        <div class="col-lg-4 col-xm-12">
+                            <button v-if="answer===''" @click="next()" type="button" class="btn btn-primary btn-lg btn-block mt-lg-0 mt-3" disabled>下一题</button>
+
+                            <button v-else  @click="next(row.answer,row.num)"
+                                    type="button" class="btn btn-primary btn-lg btn-block mt-lg-0 mt-3">下一题</button>
+                        </div>
+                        <div class="col-lg-2 col-xm-12">
+                            <button @click="showNote" type="button" class="btn btn-lg btn-block mt-lg-0 mt-3">答题详解</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div v-show="flag">
+                            <span >{{row.answer}}</span>
+                            <span >{{row.note}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div v-if="progress==size" class="jumbotron jumbotron-fluid mt-3 col-md-11">
+                <div class="container">
+                    <div class="col-lg-4 col-xm-12">
+                        <a href="main.html">
+                            <button class="btn btn-danger btn-lg btn-block">恭喜您已完成所有题目</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+    </main>
+
+</div>
+<div class="footpage"></div>
+<!-- Bootstrap and necessary plugins -->
+<script src="assets/js/libs/jquery.min.js"></script>
+
+<script>
+    $(function(){
+        $(".headerpage").load("public-html/head.html");
+        $(".navpage").load("public-html/nav.html");
+        $(".footpage").load("public-html/foot.html");
+    });
+</script>
+<script src="js/Vue.js"></script>
+<script>
+    var id=window.location.search;
+    var arr=id.split("=");
+    var Subj=arr[1];
+    var userId;//当前用户id
+    var problemNum;//当前错题题号
+    var WrongAnswer;//当前所错选的答案
+    var pageNum=1;//当前页数
+    var pageSize=1;//每行记录
+    var app=new Vue({
+        el:'#app',
+        data:{
+            quiz:[],//题目
+            progress:0,//当前的完成进度
+            itemsValue:['A','B','C','D'],//选择答案
+            answer:'',//所选的答案
+            size:-1,//总页数
+            trueAnswer:'',//正确答案
+            UserAccount:'',//用户账号
+            flag:false,//答题详解默认不显示
+            idd:Subj,//当前科目
+        },
+        created:function(){
+            self=this;
+            //获得当前登录的ID
+            $.ajax({
+                url:"LoadAjax",
+                type:"post",
+                success:function (data) {
+                    userId=data;
+
+                    if(userId==null){
+                        window.open('first-main.html');//未登录需要登陆后再查看
+                    }
+
+                },
+                error:function () {
+                }
+            })
+
+
+        },
+        methods:{
+            //开始做题
+            begin:function(){
+                //全部问题分页查询第一页
+                $.ajax({
+                    url:"WrongList",
+                    data:{"pageNum":pageNum,"pageSize":pageSize,"Subj":Subj,"UserAccount":userId},
+                    type:"post",
+                    datatype:"json",
+                    success:function (data) {
+                        self.quiz=JSON.parse(data);
+                       // alert(data);
+                    },
+                    error:function (data) {
+                        alert(JSON.stringify(data1));
+                    }
+                }),
+
+                    //当前题目总数
+                    $.ajax({
+                        url:"GetSizeWrong",
+                        data:{"Subj":Subj,"UserAccount":userId},
+                        type:"post",
+                        datatype:"json",
+                        success:function (data) {
+                            self.size=JSON.parse(data);
+                            //alert(self.size);
+                        },
+                        error:function () {
+                            alert("系统错误");
+                        }
+                    })
+            },
+            //每个radio点击事件
+            che:function(answer){
+                if(this.answer!=answer){
+                    this.trueAnswer='答错了，正确答案  '+answer;
+                    this.flag=false;
+                }
+                else{
+                    this.trueAnswer='答对了  ';
+                    this.flag=false;
+                }
+            },
+            //上一题
+            prev:function () {
+                this.trueAnswer='';
+                if(this.progress > 0 && this.progress <= this.size){
+                    pageNum--;
+                    this.progress--;
+                    this.answer = this.answer.get(this.progress);
+                    this.flag=false;
+                }
+                else{
+                    this.trueAnswer='当前为第一页';
+                }
+            },
+            //下一题
+            next:function (answer,Num) {
+                problemNum=Num;//获取当前题号
+                //alert(userId+problemNum+this.answer);
+                this.trueAnswer='';
+                if(this.answer!=answer){
+                    //每座一题跟新一次
+                    WrongAnswer=this.answer;
+                    //更新错题
+                    $.ajax({
+                        url:"UpdateWrong",
+                        type:"post",
+                        data:{"UserAccount":userId,"Num":problemNum,"WrongAnswer":WrongAnswer},
+                        success:function (d) {
+                            if(d==="ok"){
+                              //  alert("错题更新成功");
+                            }
+                            if(d==="err"){
+                                //alert("错题更新失败");
+                            }
+
+                        },
+                        error:function () {
+                            alert("系统出错");
+                        }
+                    })
+
+                }
+                else{
+                    $.ajax({
+                        url:"DeleteWrong",
+                        type:"post",
+                        data:{"UserAccount":userId,"Num":Num},
+                        success:function (d) {
+                            if(d=="ok"){
+                               // alert("删除成功");
+                            }else {
+                              //  alert("删除失败");
+                            }
+                        },
+                        error:function () {
+                            alert("系统出错");
+                        }
+                    }),
+                        //当前题目总数
+                        $.ajax({
+                            url:"GetSizeWrong",
+                            data:{"Subj":Subj,"UserAccount":userId},
+                            type:"post",
+                            datatype:"json",
+                            success:function (data) {
+                                this.size=JSON.parse(data);
+                                //alert(self.size);
+                            },
+                            error:function () {
+                                alert("系统错误");
+                            }
+                        })
+                }
+
+                //没有全部完成，继续加载题目
+                if(this.progress < this.size){
+                    pageNum++;
+                    this.progress++;
+                    $.ajax({//全部问题分页查询
+                        url:"WrongList",
+                        data:{"pageNum":pageNum,"pageSize":pageSize,"Subj":Subj,"UserAccount":userId},
+                        type:"post",
+                        datatype:"json",
+                        success:function (data) {
+                            self.quiz=JSON.parse(data);
+                            // alert(data);
+                        },
+                        error:function (data) {
+                            alert(JSON.stringify(data1));
+                        }
+                    })
+                }
+                this.answer='';
+
+            },
+            //显示答题详解
+            showNote:function () {
+                this.flag=true;
+            }
+        }
+    })
+</script>
+
+
+
+
+</body>
+
+</html>

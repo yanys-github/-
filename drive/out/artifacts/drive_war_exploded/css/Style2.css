@@ -1,0 +1,141 @@
+.a{ cursor:hand }
+.pp{
+    position:absolute;top:965px;width:870px;height:30px;background-color: #c0c0c0;
+    left:161px; }
+
+.bg5
+{
+    width: 1200px;
+    height: 300px;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+}
+.b-title {
+    width: 1200px;
+    list-style-type: none;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    overflow: hidden;
+    background-color: #ffffff;
+}
+
+li {
+    float: left;
+}
+li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.b-title a:hover {
+    background-color: #91d5ff;
+}
+.main1
+{  position:absolute;
+
+    left:161px;
+
+    top:365px;
+    width: 870px;
+    height: 600px;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    background-color: #ffffff;
+
+}
+
+.main11
+{
+    width: 150px;
+    height: 200px;
+    display: block;
+
+}
+.main111
+{
+    width: 300px;
+    height: 500px;
+    left: 161px;
+    top: 365px;
+    text-align: center;
+
+}
+.main111
+{
+    position: relative;
+    left: 50px;
+    top: 150px;
+
+}
+.main112
+{
+
+    left: 390px;
+    top: 90px;
+    position: absolute;
+
+
+}
+
+.class1
+{
+    width: 250px;
+    height: 30px;
+    -webkit-appearance:none;
+    -moz-appearance: none;
+
+
+    border-radius:4px;
+    border:1px solid #c8cccf;
+    color:#6a6f77;
+    outline:0;
+
+}
+
+.button
+{
+    border-width: 0px; /* 边框宽度 */
+    border-radius: 3px; /* 边框半径 */
+    background: #1E90FF; /* 背景颜色 */
+    cursor: pointer; /* 鼠标移入按钮范围时出现手势 */
+    outline: none; /* 不显示轮廓线 */
+    font-family: Microsoft YaHei; /* 设置字体 */
+    color: white; /* 字体颜色 */
+    font-size: 17px; /* 字体大小 */
+
+
+}
+.button:hover{
+    background-color:#4183c4;
+}
+
+#calendar{
+    position:absolute;
+    display:block;
+
+    right:161px;
+
+    top:265px;
+    background-color: #fff;
+    width: 310px;
+    height: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 100px auto;
+    text-align: center;
+}
+#calendar .yearMon{
+    background-color: #ddd;
+    padding: 5px 0;
+}
+#calendar .date {
+    color: #0099FF;
+    font-size: 96px;
+    font-weight: bold;
+}

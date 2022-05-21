@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 包含头部信息用于适应不同设备 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--  定义web页面描述： -->
+    <meta name="description" content="">
+    <!--  定义页面作者： -->
+    <meta name="author" content="">
+    <!-- 定义文档关键词，用于搜索引擎： -->
+    <meta name="keyword" content="HTML, CSS, JavaScript">
+    <!-- 网页标题前的图标 -->
+    <link rel="shortcut icon" href="img/favicon.png">
+    <title>科目一主界面</title>
+    <!-- Icons -->
+    <!-- fa 图标库 -->
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/simple-line-icons.css" rel="stylesheet">
+    <!-- Main styles for this application -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
+<!-- 头部 -->
+<div class="headerpage"></div>
+<!-- 主体 -->
+<div id="main2" class="app-body">
+    <!-- 侧边导航栏 -->
+    <div class="navpage"></div>
+    <!-- 中心内容 -->
+    <main class="main">
+        <!-- 当前位置 -->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">当前位置</li>
+            <li class="breadcrumb-item"><a href="main.html">首页</a>
+            </li>
+            <li v-if="Subj==='1'" class="breadcrumb-item "><a href="course1-main.html">科目一</a></li>
+            <li v-else class="breadcrumb-item "><a href="course4-main.html">科目四</a></li>
+            <li class="breadcrumb-item active">专题练习</li>
+        </ol>
+        <!--每个界面代码添加位置-->
+        <div  class="container-fluid">
+            <div class="animated fadeIn">
+                <div class="row">
+                    <div v-if="Subj==='1'" class="col-sm-6 col-lg-6" onclick="window.open('course1-answer2-a.html?type=1')">
+                        <div class="card card-inverse card-info">
+                            <div class="card-block">
+                                <div class="h1 text-muted text-right mb-2">
+                                    <i class="icon-people"></i>
+                                </div>
+                                <div class="h4 mb-0">交通法律法规</div>
+                                <div class="progress progress-white progress-xs mt-1">
+                                    <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/.col-->
+                    <div v-if="Subj==='4'" class="col-sm-6 col-lg-6" onclick="window.open('course1-answer2-a.html?type=5')">
+                        <div class="card card-inverse card-info">
+                            <div class="card-block">
+                                <div class="h1 text-muted text-right mb-2">
+                                    <i class="icon-people"></i>
+                                </div>
+                                <div class="h4 mb-0">违法行为综合判断与案例分析</div>
+                                <div class="progress progress-white progress-xs mt-1">
+                                    <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/.col-->
+                    <div v-if="Subj==='1'" class="col-sm-6 col-lg-6"  onclick="window.open('course1-answer2-a.html?type=2')">
+                        <div class="card card-inverse card-success">
+                            <div class="card-block">
+                                <div class="h1 text-muted text-right mb-2">
+                                    <i class="icon-user-follow"></i>
+                                </div>
+                                <div class="h4 mb-0">交通信号</div>
+                                <div class="progress progress-white progress-xs mt-1">
+                                    <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/.col-->
+                    <div v-if="Subj==='4'" class="col-sm-6 col-lg-6"  onclick="window.open('course1-answer2-a.html?type=6')">
+                        <div class="card card-inverse card-success">
+                            <div class="card-block">
+                                <div class="h1 text-muted text-right mb-2">
+                                    <i class="icon-user-follow"></i>
+                                </div>
+                                <div class="h4 mb-0">安全行车常识</div>
+                                <div class="progress progress-white progress-xs mt-1">
+                                    <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/.col-->
+                </div>
+                <div class="row">
+                    <div v-if="Subj==='1'" class="col-sm-6 col-lg-6"  onclick="window.open('course1-answer2-a.html?type=3')">
+                        <div class="card card-inverse card-warning">
+                            <div class="card-block">
+                                <div class="h1 text-muted text-right mb-2">
+                                    <i class="icon-basket-loaded"></i>
+                                </div>
+                                <div class="h4 mb-0">安全行车，文明驾驶基础知识</div>
+                                <div class="progress progress-white progress-xs mt-1">
+                                    <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/.col-->
+                    <div v-if="Subj==='4'" class="col-sm-6 col-lg-6"  onclick="window.open('course1-answer2-a.html?type=7')">
+                        <div class="card card-inverse card-warning">
+                            <div class="card-block">
+                                <div class="h1 text-muted text-right mb-2">
+                                    <i class="icon-basket-loaded"></i>
+                                </div>
+                                <div class="h4 mb-0">常见交通标志、标线和交通手势辨识</div>
+                                <div class="progress progress-white progress-xs mt-1">
+                                    <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/.col-->
+                    <div v-if="Subj==='1'" class="col-sm-6 col-lg-6"  onclick="window.open('course1-answer2-a.html?type=4')">
+                        <div class="card card-inverse card-danger">
+                            <div class="card-block">
+                                <div class="h1 text-muted text-right mb-2">
+                                    <i class="icon-speedometer"></i>
+                                </div>
+                                <div class="h4 mb-0">机动车驾驶操作相关基础知识</div>
+                                <div class="progress progress-white progress-xs mt-1">
+                                    <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/.col-->
+                    <div v-if="Subj==='4'" class="col-sm-6 col-lg-6"  onclick="window.open('course1-answer2-a.html?type=8')">
+                        <div class="card card-inverse card-danger">
+                            <div class="card-block">
+                                <div class="h1 text-muted text-right mb-2">
+                                    <i class="icon-speedometer"></i>
+                                </div>
+                                <div class="h4 mb-0">驾驶职业道德和文明驾驶常识</div>
+                                <div class="progress progress-white progress-xs mt-1">
+                                    <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</div>
+<div class="footpage"></div>
+<!-- Bootstrap and necessary plugins -->
+<script src="assets/js/libs/jquery.min.js"></script>
+
+<script>
+    $(function(){
+        $(".headerpage").load("public-html/head.html");
+        $(".navpage").load("public-html/nav.html");
+        $(".footpage").load("public-html/foot.html");
+    });
+</script>
+<script src="js/Vue.js"></script>
+<script>
+    var id=window.location.search;
+    var arr=id.split("=");
+    var Subj=arr[1];
+    var vm=new Vue({
+        el:"#main2",
+        data:{Subj:Subj}
+    })
+</script>
+
+
+
+</body>
+
+</html>

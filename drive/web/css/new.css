@@ -1,0 +1,59 @@
+a:link {text-decoration:none;}
+a:visited {text-decoration:none;}
+a:hover {text-decoration:none;}
+a:active {text-decoration:none;}
+
+.team{
+    margin: 4em 0;
+    position: relative;
+}
+
+.team .item{
+    position: relative;
+}
+.team .des{
+    background: rgba(71, 81, 91, 0.83);
+    color: #fff;
+    text-align: center;
+    border-bottom-left-radius: 93%;
+    transition:.1s ease-in-out;
+}
+
+.team .item:hover .des{
+    height: 100%;
+    background: rgba(146, 153, 156, 0.86);
+    position: absolute;
+    width: 89%;
+    padding: 5em;
+    top: 0;
+    border-bottom-left-radius: 0;
+}
+
+input[type="radio"] + label::before {
+    content: "\a0"; /*不换行空格*/
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 18px;
+    width: 1em;
+    height: 1em;
+    margin-right: .4em;
+    border-radius: 50%;
+    border: 1px solid #01cd78;
+    text-indent: .15em;
+    line-height: 1;
+}
+
+input[type="radio"]:checked + label::before {
+    background-color: #01cd78;
+    background-clip: content-box;
+    padding: .2em;
+}
+
+input[type="radio"] {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+}
+
+
+
+

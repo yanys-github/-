@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keyword" content="HTML, CSS, JavaScript">
+    <!-- 网页标题前的图标 -->
+    <link rel="shortcut icon" href="img/favicon.png">
+    <title>search-train-main</title>
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/simple-line-icons.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+<!--    引用-->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script type="text/javascript" src="assets/js/libs/Vue.js"></script>
+    <script src="assets/js/libs/jquery.min.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
+<!-- 头部 -->
+<div class="headerpage"></div>
+<!-- 主体 -->
+<div class="app-body">
+    <!-- 侧边导航栏 -->
+    <div class="navpage"></div>
+    <!-- 中心内容 -->
+    <main class="main">
+        <!-- 当前位置 -->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">当前位置</li>
+            <li class="breadcrumb-item"><a href="main.html">首页</a>
+            </li>
+            <li class="breadcrumb-item active">预约教练</li>
+        </ol>
+        <!--每个界面代码添加位置-->
+        <div class="container-fluid">
+            <div class="animated fadeIn">
+                <!--从这开始加-->
+                <div id="app" align="center">
+                    <!--    教练信息模态框-->
+                    <el-dialog :visible.sync="visible" title="教练信息" width="30%" center>
+                        <el-container>
+                            <el-aside width="40%">
+                                 <span  v-if="CoachInfo.sex == '男'">
+                                    <img src="img/Image/user_man.png" height="90" width="90"/></span>
+                                <span  v-if="CoachInfo.sex == '女'">
+                                    <img src="img/Image/user_woman.png" height="90" width="90"/></span>
+                            </el-aside>
+                            <el-main>
+                                <p>姓名：{{CoachInfo.name}}</p>
+                                <p>性别：{{CoachInfo.sex}}</p>
+                                <p>价格：{{CoachInfo.price}}</p>
+                                <p>所在地：{{CoachInfo.province}}{{CoachInfo.city}}</p>
+                                <p>联系方式：{{CoachInfo.phone}}</p>
+                                <p>个人简介：{{CoachInfo.info}}</p>
+                            </el-main>
+                        </el-container>
+
+                    </el-dialog>
+
+                    <!--        表格主体:data="tables"
+                    -->
+                    <el-table
+                            :data="tableData.filter(data => !search || data.coName.toLowerCase().includes(search.toLowerCase()))
+                &&tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)"
+                            stripe
+                            style="width: 60%">
+                        <!--            头像-->
+                        <el-table-column label="头像" align="center">
+                            <template slot-scope="scope">
+                    <span  v-if="scope.row.coSex == '男'">
+                        <img src="img/Image/user_man.png" height="90" width="90"/>
+                    </span>
+                                <span  v-if="scope.row.coSex == '女'">
+                         <img src="img/Image/user_woman.png" height="90" width="90"/>
+                    </span>
+                            </template>
+                        </el-table-column>
+                        <!--            教练姓名设置按钮-->
+                        <el-table-column label="教练" align="center">
+                            <template slot-scope="scope">
+                                <el-button type="text" @click="Information(scope.$index, scope.row)">
+                                    {{scope.row.coName}}
+                                </el-button>
+                            </template>
+                        </el-table-column>
+                        <!--            性别-->
+                        <el-table-column
+                                label="性别"
+                                :filters="[{ text: '男', value: '男' }, { text: '女', value: '女' }]"
+                                :filter-method="filterTag"
+                                filter-placement="bottom-end"
+                                align="center">
+                            <template slot-scope="scope">
+                                {{scope.row.coSex}}
+                            </template>
+                        </el-table-column>
+                        <!--            所在地-->
+                        <el-table-column label="所在地" align="center">
+                            <template slot-scope="scope">
+                                {{scope.row.coProvince}}{{scope.row.coCity}}
+                            </template>
+                        </el-table-column>
+                        <!--            价格-->
+                        <el-table-column
+                                id="pri"
+                                label="价格"
+                                sortable
+                                align="center"
+                                prop="coPrice">
+                        </el-table-column>
+                        <!--            筛选||预约-->
+                        <el-table-column
+                                align="center"
+                                width="200">
+                            <template slot="header" slot-scope="scope">
+                                <el-input
+                                        v-model="search"
+                                        size="mini"
+                                        placeholder="姓名关键字搜索"/>
+                            </template>
+                            <template slot-scope="scope">
+                                <el-button
+                                        size="mini"
+                                        type="success"
+                                        plain
+                                        @click="handleOrder(scope.$index, scope.row)">预约</el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+
+                    <!--        分页-->
+                    <div align="center">
+                        <br><br>
+                        <el-pagination
+                                @size-change="handleSizeChange"
+                                @current-change="handleCurrentChange"
+                                :current-page="currentPage"
+                                :page-sizes="[5, 10, 20, 40]"
+                                :page-size="pagesize"
+                                background
+                                layout="total, sizes, prev, pager, next, jumper"
+                                :total="tableData.length">
+                        </el-pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</div>
+<div class="footpage"></div>
+<!-- Bootstrap and necessary plugins -->
+
+<script>
+    $(function(){
+        $(".headerpage").load("public-html/head.html");
+        $(".navpage").load("public-html/nav.html");
+        $(".footpage").load("public-html/foot.html");
+    });
+</script>
+<script>
+    var v=new Vue({
+        el: '#app',
+        data: function() {
+            return {
+                visible: false,
+                currentPage:1,
+                pagesize:5,
+                tableData: [],
+                CoachInfo:{name: '', sex:'', province:'',city:'', price:'',phone:'',info:''},
+                search: ''}
+        },
+        created:function(){this.loading();this.tables();},
+        methods: {
+            loading:function()
+            {
+                $.ajax({
+                    url:"SearchCoach",
+                    type:"get",
+                    datatype:"json",
+                    contentType:"application/json",
+                    success: function(data) {
+                        v.tableData = JSON.parse(data);
+                        console.log(v.tableData);
+                    },
+                    error:function () {alert("data错误！");}
+                })
+            },
+            tables:function()
+            {
+                const search = this.search;
+                if(search)
+                {
+                    return v.tableData.filter(data=>{
+                        return Object.keys(data).some(key=>{
+                            return String(data[key]).toLowerCase().indexOf(search)>-1
+                        })
+                    })
+                }
+                return v.tableData;
+            },
+            handleOrder:function(index, row) {
+                $.ajax({
+                    url:"OrdCoach",
+                    type:"get",
+                    data:{"coAcc":row.coAccount},
+                    success:function () {location.href="search-train-order.html";},
+                    error:function () {alert("error!");}
+                });
+            },
+                Information:function(index, row)
+            {
+                v.CoachInfo.name=row.coName;
+                v.CoachInfo.sex=row.coSex;
+                v.CoachInfo.phone=row.coPhone;
+                v.CoachInfo.price=row.coPrice;
+                v.CoachInfo.province=row.coProvince;
+                v.CoachInfo.city=row.coCity;
+                v.CoachInfo.info=row.coInfo;
+                v.visible=true;
+            },
+            handleSizeChange: function (size) {
+                this.pagesize = size;
+                console.log(this.pagesize)  //每页下拉显示数据
+            },
+            handleCurrentChange: function(currentPage){
+                this.currentPage = currentPage;
+                console.log(this.currentPage)  //点击第几页
+            },
+            //筛选
+            filterTag(value, row) {return row.coSex === value;},
+        }
+    })
+</script>
+
+</body>
+</html>

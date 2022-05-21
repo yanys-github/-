@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 包含头部信息用于适应不同设备 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--  定义web页面描述： -->
+    <meta name="description" content="">
+    <!--  定义页面作者： -->
+    <meta name="author" content="">
+    <!-- 定义文档关键词，用于搜索引擎： -->
+    <meta name="keyword" content="HTML, CSS, JavaScript">
+    <!-- 网页标题前的图标 -->
+    <link rel="shortcut icon" href="img/favicon.png">
+    <title>个人中心</title>
+    <!-- Icons -->
+    <!-- fa 图标库 -->
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/simple-line-icons.css" rel="stylesheet">
+    <!-- Main styles for this application -->
+    <link href="css/style.css" rel="stylesheet">
+    <script src="assets/js/libs/jquery.min.js"></script>
+
+    <style>
+        .a{ cursor:hand }
+        .pp{
+            position:absolute;top:965px;width:870px;height:30px;background-color: #c0c0c0;
+            left:161px; }
+
+        .bg5
+        {
+            width: 1200px;
+            height: 300px;
+            display:block;
+            margin-left:auto;
+            margin-right:auto;
+        }
+        .b-title {
+            width: 1200px;
+            list-style-type: none;
+            display:block;
+            margin-left:auto;
+            margin-right:auto;
+            overflow: hidden;
+            background-color: #ffffff;
+        }
+
+        li {
+            float: left;
+        }
+        li a {
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .b-title a:hover {
+            background-color: #91d5ff;
+        }
+        .main1
+        {  position:absolute;
+
+            left:161px;
+
+            top:365px;
+            width: 870px;
+            height: 600px;
+            display:block;
+            margin-left:auto;
+            margin-right:auto;
+            background-color: #ffffff;
+
+        }
+
+        .main11
+        {
+            width: 150px;
+            height: 200px;
+            display: block;
+
+        }
+        .main111
+        {
+            width: 300px;
+            height: 500px;
+            left: 161px;
+            top: 365px;
+            text-align: center;
+
+        }
+        .main111
+        {
+            position: relative;
+            left: 50px;
+            top: 150px;
+
+        }
+        .main112
+        {
+
+            left: 390px;
+            top: 90px;
+            position: absolute;
+
+
+        }
+
+        .class1
+        {
+            width: 250px;
+            height: 30px;
+            -webkit-appearance:none;
+            -moz-appearance: none;
+
+
+            border-radius:4px;
+            border:1px solid #c8cccf;
+            color:#6a6f77;
+            outline:0;
+
+        }
+
+        .button
+        {
+            border-width: 0px; /* 边框宽度 */
+            border-radius: 3px; /* 边框半径 */
+            background: #1E90FF; /* 背景颜色 */
+            cursor: pointer; /* 鼠标移入按钮范围时出现手势 */
+            outline: none; /* 不显示轮廓线 */
+            font-family: Microsoft YaHei; /* 设置字体 */
+            color: white; /* 字体颜色 */
+            font-size: 17px; /* 字体大小 */
+
+
+        }
+        .button:hover{
+            background-color:#4183c4;
+        }
+
+        #calendar{
+            position:absolute;
+            display:block;
+
+            right:161px;
+
+            top:265px;
+            background-color: #fff;
+            width: 310px;
+            height: 200px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 100px auto;
+            text-align: center;
+        }
+        #calendar .yearMon{
+            background-color: #ddd;
+            padding: 5px 0;
+        }
+        #calendar .date {
+            color: #0099FF;
+            font-size: 96px;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
+<!-- 头部 -->
+<div class="headerpage"></div>
+<!-- 图片外加导航栏 -->
+<div> <img src="img/bg5.jpg" class="bg5">
+    <ul class="b-title">
+
+        <li></li>
+
+        <li class="l1" id="d1"><a class="a1" id="1"href="#">错题管理</a></li>
+        <li class="l1" id="d2"><a class="a1" id="2" href="#">人员管理</a></li>
+        <li class="l1" id="d3"><a class="a1" id="3" href="#">预约管理</a></li>
+
+    </ul>
+
+</div>
+<!-- 左边的数据显示那一部分-->
+<div id=app class="main1">
+    <div class="main11" id="i1">
+        <div class="main111">
+
+        </div>
+        <div class="main112" >
+
+        </div>
+
+    </div>
+    <div class="main12" id="i2">
+        <!--我的错题添加到这部分--></div>
+
+    <div class="main13" id="i3">
+        <!--我的预约添加到这部分-->
+
+    </div>
+</div>
+
+<div class="main2" id="calendar">
+    <div class="yearMon"></div>
+    <div class="date"></div>
+    <div class="week"></div>
+
+</div>
+<p class="pp">  Copyright © NIT造作小分队</p>
+<script>  $(function(){
+    // 获取时间
+    var nowDate = new Date();
+    var year = nowDate.getFullYear();
+    var month = nowDate.getMonth() + 1 < 10 ? "0" + (nowDate.getMonth() + 1) : nowDate.getMonth() + 1;
+    var date = nowDate.getDate() < 10 ? "0" + nowDate.getDate() : nowDate.getDate();
+    var week = "星期" + "日一二三四五六".split(/(?!\b)/)[nowDate.getDay()];
+    // 添加文本内容到相应的div
+    $(".yearMon").text(year+"年"+month+"月");
+    $(".date").text(date);
+    $(".week").text(week);
+});
+</script>
+<script type="text/javascript">
+
+    window.onload = function(){
+        var arr = document.getElementsByClassName('a1');
+        for(var i = 0;i<arr.length;i++){
+            arr[i].onclick = function(){
+                if (this.id == '1' )
+                {
+                    document.getElementById("i1").style.display = 'block' ;
+                    document.getElementById("i2").style.display = 'none' ;
+                    document.getElementById("i3").style.display = 'none' ;
+                }
+                else if(this.id == '2')
+                {
+                    document.getElementById("i1").style.display = 'none' ;
+                    document.getElementById("i2").style.display = 'block' ;
+                    document.getElementById("i3").style.display = 'none' ;
+                }
+                else{
+                    document.getElementById("i1").style.display = 'none' ;
+                    document.getElementById("i2").style.display = 'none' ;
+                    document.getElementById("i3").style.display = 'block' ;
+                }
+
+            }
+        }
+    }
+</script>
+
+
+<!-- Bootstrap and necessary plugins -->
+
+<script src="assets/js/libs/tether.min.js"></script>
+<script src="assets/js/libs/bootstrap.min.js"></script>
+<script src="assets/js/libs/pace.min.js"></script>
+<!-- Plugins and scripts required by all views -->
+<script src="assets/js/libs/Chart.min.js"></script>
+<script>
+    $(function(){
+        $(".headerpage").load("public-html/P-head.html");
+
+    });
+</script>
+
+
+<!-- GenesisUI main scripts -->
+
+
+
+
+</body>
+

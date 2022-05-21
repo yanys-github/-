@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 包含头部信息用于适应不同设备 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--  定义web页面描述： -->
+    <meta name="description" content="">
+    <!--  定义页面作者： -->
+    <meta name="author" content="">
+    <!-- 定义文档关键词，用于搜索引擎： -->
+    <meta name="keyword" content="HTML, CSS, JavaScript">
+    <!-- 网页标题前的图标 -->
+    <link rel="shortcut icon" href="img/favicon.png">
+    <title>学车指南</title>
+    <!-- 新 Bootstrap4 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="./style.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- bootstrap.bundle.min.js 用于弹窗、提示、下拉菜单，包含了 popper.min.js -->
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+
+    <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script src="./script.js" charset="utf-8"></script>
+    <!-- Icons -->
+    <!-- fa 图标库 -->
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/simple-line-icons.css" rel="stylesheet">
+    <!-- Main styles for this application -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
+<!-- 头部 -->
+<div class="headerpage"></div>
+<!-- 主体 -->
+<div class="app-body">
+    <!-- 侧边导航栏 -->
+    <div class="navpage"></div>
+    <!-- 中心内容 -->
+    <main class="main">
+        <!-- 当前位置 -->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">当前位置</li>
+            <li class="breadcrumb-item"><a href="main.html">首页</a>
+            </li>
+            <li class="breadcrumb-item active">学车指南</li>
+        </ol>
+        <!--每个界面代码添加位置-->
+        <div class="container-fluid" >
+            <div class="animated fadeIn">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                学车指南
+                            </div>
+                            <div class="card-block">
+                                学车就像一次朝圣，涅槃，或者说是质疑自我智商之旅，有时弄得人身心俱疲，狼狈不堪。
+                                写写关于学车的那些故事，把它送给正在学车的、想要学车的和已经拿到驾照的你。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="component demo" >
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="carousel slide demo"
+                                 id="carousel-demo" data-interval="5000">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carousel-demo" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carousel-demo" data-slide-to="1"></li>
+                                    <li data-target="#carousel-demo" data-slide-to="2"></li>
+                                </ol>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img class="d-block w-100" src="./img/1.jpg" alt="">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="d-block w-100" src="./img/2.jpg" alt="">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="d-block w-100" src="./img/3.jpg" alt="">
+                                    </div>
+                                </div>
+                                <a href="#carousel-demo" class="carousel-control-prev" data-slide="prev">
+                                    <span class="carousel-control-prev-icon"></span>
+                                </a>
+                                <a href="#carousel-demo" class="carousel-control-next" data-slide="next">
+                                    <span class="carousel-control-next-icon"></span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card" style="width: 18rem;">
+                                <div class="card-header">
+                                    驾照类型
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <a href="https://www.jiakaobaodian.com/news/a1/" class="card-link">A1大型客车</a>
+                                        <a href="https://www.jiakaobaodian.com/news/a2/" class="card-link">A2牵引车</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#" class="card-link">B1中型客车</a>
+                                        <a href="#" class="card-link">B2大型货车</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#" class="card-link">C1小型汽车</a>
+                                        <a href="#" class="card-link">C2小型自动挡汽车</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#" class="card-link">C3低速载货汽车</a>
+                                        <a href="#" class="card-link">C4三轮车</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#" class="card-link">C5残疾人专用小型自动挡载客汽车</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#" class="card-link">D普通三轮摩托车</a>
+                                        <a href="#" class="card-link">E普通二轮摩托车</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#" class="card-link">F轻便摩托车</a>
+                                        <a href="#" class="card-link">M轮式自行机械车</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="card mb-0" style="max-width: 840px;">
+                                <div class="row no-gutters">
+                                    <div class="col-md-4">
+                                        <img src="./img/7.png" class="card-img" alt="...">
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><a href="https://www.jiakaobaodian.com/news/detail/1740685.html">科目三考试各项目操作流程详解，练好不挂科</a> </h5>
+                                            <p class="card-text">Subject 3: detailed explanation of the operation process of each item in the exam</p>
+                                            <p class="card-text"><small class="text-muted">驾考宝典&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2019-11-27</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card mb-0" style="max-width: 840px;">
+                                <div class="row no-gutters">
+                                    <div class="col-md-4">
+                                        <img src="./img/8.png" class="card-img" alt="...">
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><a href="https://www.jiakaobaodian.com/news/detail/1834664.html">备考科四必看！考试知识点全解，助你拿满分</a> </h5>
+                                            <p class="card-text">Four must see for the exam! Get full marks for you with all the knowledge in the exam</p>
+                                            <p class="card-text"><small class="text-muted">驾考宝典&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2019-11-27</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card mb-0" style="max-width: 840px;">
+                                <div class="row no-gutters">
+                                    <div class="col-md-4">
+                                        <img src="./img/9.png" class="card-img" alt="...">
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><a href="https://www.jiakaobaodian.com/news/detail/1664791.html">科目三再也不怕突发情况，你需要掌握这个原则</a></h5>
+                                            <p class="card-text">Subject 3 is no longer afraid of emergencies. You need to master this principle</p>
+                                            <p class="card-text"><small class="text-muted">驾考宝典&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2019-11-27</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card mb-0" style="max-width: 840px;">
+                                <div class="row no-gutters">
+                                    <div class="col-md-4">
+                                        <img src="./img/10.png" class="card-img" alt="...">
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><a href="https://www.jiakaobaodian.com/news/detail/1332372.html">简单的科目三变更车道小技巧，你想知道吗？</a> </h5>
+                                            <p class="card-text">Simple subject 3 lane change tips, do you want to know?</p>
+                                            <p class="card-text"><small class="text-muted">驾考宝典&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2019-11-27</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card mb-0" style="max-width: 840px;">
+                                <div class="row no-gutters">
+                                    <div class="col-md-4">
+                                        <img src="./img/11.png" class="card-img" alt="...">
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><a href="https://www.jiakaobaodian.com/news/detail/1711618.html">知否，知否，科目三教练这样对你他也很难受！</a> </h5>
+                                            <p class="card-text">No, no, coach of subject three is very hard for you and him!</p>
+                                            <p class="card-text"><small class="text-muted">驾考宝典&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2019-11-27</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">6</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">7</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">8</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">9</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="col-md-4">
+                            <h2>热门文章</h2>
+                            <div class="fakeimg">
+                                <img src="./img/13.png" alt="">
+                            </div>
+                            <ul class="nav nav-pills flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link " href="https://www.jiakaobaodian.com/news/detail/1848371.html">•科一一千多道题很头疼，这样做可以少做一半的</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " href="#">•倒车入库你总是失败怎么办？这个文章一定要看</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">科目二5大低级错误，小心中招的就是你！</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">•科目三掌握好灯和挡，轻松通过不是梦！</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">•科三一把过的捷径，送给准备考科三的你~</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">•想拿本？科四这些必备细节不得不注意！</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">•科四高效复习策略汇总，满分很轻松</a>
+                                </li>
+                            </ul>
+                            <hr class="d-sm-none">
+
+                            <div class="card" style="width: 18rem;">
+                                <div class="card-header">
+                                    热门模拟考试试题
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <a href="https://www.jiakaobaodian.com/kaoshi/cb261b38.html" class="card-link">•驾考宝典2018年客车安全文明驾校模拟考试</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#" class="card-link">•驾考宝典出租车从业资格证考试模拟试题2018</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#" class="card-link">•驾考宝典2018年货车b2科目四模拟考试</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#" class="card-link">•驾考宝典2018年牵引车交规考试题库</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#" class="card-link">•驾考宝典2018年客车模拟考试最新版</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#" class="card-link">•驾考宝典2018年客车科目1驾驶人模拟考试</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+</div>
+<div class="footpage"></div>
+<!-- Bootstrap and necessary plugins -->
+<script src="assets/js/libs/jquery.min.js"></script>
+<script>
+    $(function(){
+        $(".headerpage").load("public-html/head.html");
+        $(".navpage").load("public-html/nav.html");
+        $(".footpage").load("public-html/foot.html");
+    });
+</script>
+
+
+
+</body>
+
+</html>

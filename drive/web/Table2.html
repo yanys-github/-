@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Table2</title>
+    <!--    引用-->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script type="text/javascript" src="assets/js/libs/Vue.js"></script>
+    <script src="assets/js/libs/jquery.min.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<body>
+<div id="Tables">
+    <el-table
+            :data="tableData.filter(data => !search || data.coName.toLowerCase().includes(search.toLowerCase())||data.appDate.toLowerCase().includes(search.toLowerCase()))"
+            height="300" stripe border>
+        <el-table-column prop="appID" label="预约单号"></el-table-column>
+        <el-table-column prop="coName" label="教练"></el-table-column>
+        <el-table-column prop="appDate" label="预约日期"></el-table-column>
+        <el-table-column prop="appDate3" label="预约时间"></el-table-column>
+        <el-table-column>
+            <template slot="header" slot-scope="scope">
+                <el-input
+                        v-model="search"
+                        size="mini"
+                        placeholder="输入关键字搜索"></el-input>
+            </template>
+            <template slot-scope="scope">
+                <el-button type="text" @click="cancel(scope.row)">取消预约</el-button>
+            </template>
+        </el-table-column>
+    </el-table>
+</div>
+<script>
+    var v=new Vue({
+
+        el:"#Tables",
+        data:function () {
+            return{
+                tableData:[],search:"",flag:null
+            }
+        },
+        created:function () {this.loading();},
+        methods:{
+            loading:function(){
+                $.ajax({
+                    url:"SearchAppointmentUser",
+                    type:"get",
+                    datatype:"json",
+                    contentType:"application/json",
+                    success: function(data) {
+                        v.tableData = JSON.parse(data);
+                        console.log(v.tableData);
+                    },
+                    error:function () {alert("data错误！");}
+                })
+            },
+            cancel:function (row) {
+                $.ajax({
+                    url:"CancelAppointment",
+                    type:"get",
+                    data:{"AppID":row.appID},
+                    success: function(data) {
+                        v.flag=data;
+                    },
+                    error:function () {alert("data错误！");}
+                });
+                if(v.flag)
+                {
+                    this.$notify({
+                        title: '提示',
+                        message: '取消成功！',
+                        type: 'success',
+                        duration: 0
+                    });
+                }
+                else
+                {
+                    this.$notify({
+                        title: '警告',
+                        message: '确认取消订单？（仅提醒一次）',
+                        type: 'warning'
+                    });
+                }
+                this.loading();
+            }
+        }
+    })
+</script>
+</body>
+</html>

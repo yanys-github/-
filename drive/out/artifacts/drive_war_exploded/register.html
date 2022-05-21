@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="CoreUI Bootstrap 4 Admin Template">
+    <meta name="author" content="Lukasz Holeczek">
+    <meta name="keyword" content="CoreUI Bootstrap 4 Admin Template">
+    <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
+
+    <title>注册</title>
+    <style>
+
+        #div1{
+            display: none;
+            opacity:0.8;
+        }
+
+        #div2{
+            display: block;
+            opacity:0.8        ;
+        }
+
+        #ha{
+            background-image: url(img/5.jpg);
+            background-size: cover;
+            opacity:0.9;
+        }
+
+    </style>
+
+    <!-- Icons -->
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/simple-line-icons.css" rel="stylesheet">
+
+    <!-- Main styles for this application -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <script>
+        var flag=[0,0,0,0,0,0,0,0,0,0,0,0,0];
+        var city=[
+            ["杭州市","绍兴市","宁波市","温州市"],
+            ["海淀区","朝阳区","顺义区","通州区"],
+            ["黄埔区","徐汇区","长宁区","静安区"]
+        ];
+        function checkName() {
+            if(document.getElementById("num").value.length<6){
+                document.getElementById("num1").innerHTML="请输入至少6位账号";
+                flag[0]=0;
+            }
+            else {
+                document.getElementById("num1").innerHTML="";
+                flag[0]=1;
+            }
+        }
+
+        function checkTel(){
+            if(document.getElementById('tel').value.length!=11){
+                document.getElementById("tell").innerHTML="请输入正确手机号码";
+                flag[2]=0;
+            }
+            else {
+                document.getElementById("tell").innerHTML="";
+                flag[2]=1;
+            }
+        }
+
+        function checkID() {
+            var id=document.getElementById("idn").value;
+            var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+            if(!reg.test(id)){
+                document.getElementById("idn1").innerHTML="请输入正确证件号";
+                flag[3]=0;
+            }
+            else {
+                document.getElementById("idn1").innerHTML="";
+                flag[3]=1;
+                if(id.length==15){
+                    document.getElementById("data").value="19"+id.substring(6,8)+"-"+id.substring(8,10)+"-"+id.substring(10,12);
+                }
+                if(id.length==18) {
+                    document.getElementById("data").value = id.substring(6, 10) + "-" + id.substring(10, 12) + "-" + id.substring(12, 14);
+                }
+            }
+        }
+
+        function checkSec() {
+            if(document.getElementById("psw1").value.length<6){
+                document.getElementById("psw0").innerHTML="请输入至少6位密码";
+                flag[4]=0;
+            }
+            else {
+                document.getElementById("psw0").innerHTML="";
+                flag[4]=1;
+            }
+        }
+
+        function checkPwd() {
+            var p1=document.getElementById("psw1").value;
+            var p2=document.getElementById("psw2").value;
+            if(p1!=p2){
+                document.getElementById("psw2").style.background="red";
+                flag[5]=0;
+            }else {
+                document.getElementById("psw2").style.background="";
+                flag[5]=1;
+            }
+        }
+
+        function checkCity() {
+            if(document.getElementById("city").value.length>0){
+                document.getElementById("city1").innerHTML="";
+                flag[6]=1;
+            }
+            else{
+                document.getElementById("city1").innerHTML="请输入城市名称";
+                flag[6]=0;
+            }
+        }
+
+        function checkNa() {
+            if(document.getElementById("na").value.length>0){
+                document.getElementById("na1").innerHTML="";
+                flag[7]=1;
+            }
+            else{
+                document.getElementById("na1").innerHTML="请输入驾校名称";
+                flag[7]=0;
+            }
+        }
+
+        function checkNameA() {
+            if(document.getElementById("nameA").value.length<2){
+                document.getElementById("name1A").innerHTML="请输入至少2个姓名";
+                flag[8]=0;
+            }
+            else {
+                document.getElementById("name1A").innerHTML="";
+                flag[8]=1;
+            }
+        }
+
+        function checkTelA(){
+            if(document.getElementById('telA').value.length!=11){
+                document.getElementById("tellA").innerHTML="请输入正确手机号码";
+                flag[9]=0;
+            }
+            else {
+                document.getElementById("tellA").innerHTML="";
+                flag[9]=1;
+            }
+        }
+
+        function checkIDA() {
+            var idA=document.getElementById("idnA").value;
+            var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+            if(!reg.test(idA)){
+                document.getElementById("idn1A").innerHTML="请输入正确证件号";
+                flag[10]=0;
+            }
+            else {
+                document.getElementById("idn1A").innerHTML="";
+                flag[10]=1;
+                if(idA.length===15){
+                    document.getElementById("data").value="19"+id.substring(6,8)+"-"+id.substring(8,10)+"-"+id.substring(10,12);
+                }
+                if(idA.length===18) {
+                    document.getElementById("data").value = id.substring(6, 10) + "-" + id.substring(10, 12) + "-" + id.substring(12, 14);
+                }
+            }
+        }
+
+        function checkSecA() {
+            if(document.getElementById("psw1A").value.length<6){
+                document.getElementById("psw0A").innerHTML="请输入至少6位密码";
+                flag[11]=0;
+            }
+            else {
+                document.getElementById("psw0A").innerHTML="";
+                flag[11]=1;
+            }
+        }
+
+        function checkPwdA() {
+            var p1=document.getElementById("psw1A").value;
+            var p2=document.getElementById("psw2A").value;
+            if(p1!=p2){
+                document.getElementById("psw2A").style.background="red";
+                flag[12]=0;
+            }else {
+                document.getElementById("psw2A").style.background="";
+                flag[12]=1;
+            }
+        }
+
+        function next() {
+            document.getElementById("div1").style.display="none";
+            document.getElementById("div2").style.display = "block";
+        }
+
+        function cancel() {
+            document.getElementById("div1").style.display = "block";
+            document.getElementById("div2").style.display = "none";
+        }
+
+        function getCity() {
+            var provinces=document.getElementById("province");//获得省份下拉框对象
+            var cities=document.getElementById("city");//获得城市下拉框对象
+            var provinceCity=city[provinces.selectedIndex-1];//清空城市下拉框，仅留提示
+            cities.length=1;//将城市数组中的值填充到城市下拉框里
+            for(var i=0;i<provinceCity.length;i++){
+                cities[i+1]=new Option(provinceCity[i],provinceCity[i]);//text,value
+            }
+        }
+
+    </script>
+
+</head>
+
+<body class="app header-fixed sidebar-fixed ">
+<div class="headerpage"></div>
+<div class="app-body flex-row align-items-center" id="ha">
+    <div id="div1" class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card mx-2">
+                    <div class="card-block p-2">
+                        <h3>教练注册</h3>
+                        <p class="text-muted">教练，欢迎您</p>
+                        <!--<div class="input-group mb-1">
+                            <span class="input-group-addon"><i class="icon-location-pin"></i>
+                            </span>
+                            <input type="text" id="city" class="form-control" placeholder="城市"onblur="checkCity()">
+                            <span id="city1"></span>
+                        </div>-->
+
+                        <div class="input-group mb-1">
+                        <span class="input-group-addon"><i class="icon-flag"></i>
+                        </span>
+                            <input type="text" id="na" class="form-control" v-model="CoAccount" placeholder="账号" onblur="checkNa()">
+                            <span id="na1"></span>
+                        </div>
+
+                        <div class="input-group mb-1">
+                            <span class="input-group-addon"><i class="icon-location-pin"></i>
+                            </span>
+                            <!--<input type="radio" name="sex" value="男" v-model="CoSex" class="radio">男
+                            <input type="radio" name="sex" value="女" v-model="CoSex" class="radio">女-->
+                            <select id="sex" class="form-control" v-model="CoSex">
+                                <option value="男" >男</option>
+                                <option value="女" >女</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group mb-1">
+                        <span class="input-group-addon"><i class="icon-flag"></i>
+                        </span>
+                            <select id="province" onchange="getCity()" v-model="CoProvince" class="form-control">
+                                <option value="0" >请选择所在省份</option>
+                                <option value="浙江省">浙江省</option>
+                                <option value="北京市">北京市</option>
+                                <option value="上海市">上海市</option></select>
+                            <select id="city" v-model="CoCity" class="form-control">
+                                <option value="0">请选择所在城市</option></select>
+                        </div>
+
+                        <div class="input-group mb-1">
+                            <span class="input-group-addon"><i class="icon-user"></i>
+                            </span>
+                            <input type="text" id="nameA" class="form-control" v-model="CoName" placeholder="姓名" onkeyup="checkNameA()">
+                            <span id="name1A"></span>
+                        </div>
+
+                        <div class="input-group mb-1">
+                        <span class="input-group-addon"><i class="icon-phone"></i>
+                        </span>
+                            <input type="text" id="telA" class="form-control" placeholder="手机号码" v-model="CoPhone" onblur="checkTelA()">
+                            <span id="tellA"></span>
+                        </div>
+
+                        <div class="input-group mb-1">
+                        <span class="input-group-addon"><i class="icon-check"></i>
+                        </span>
+                            <input type="text" id="idnA" class="form-control" placeholder="身份证号码" v-model="CoID" onblur="checkIDA()">
+                            <span id="idn1A"></span>
+                        </div>
+
+                        <div class="input-group mb-1">
+                        <span class="input-group-addon"><i class="icon-lock"></i>
+                        </span>
+                            <input type="text" id="psw1A" class="form-control" placeholder="密码" v-model="CoPassword" onkeyup="checkSecA()">
+                            <span id="psw0A"></span>
+                        </div>
+
+                        <div class="input-group mb-2">
+                        <span class="input-group-addon"><i class="icon-lock"></i>
+                        </span>
+                            <input type="text" id="psw2A" class="form-control" placeholder="确认密码" onblur="checkPwdA()">
+                        </div>
+
+                        <button type="button" class="btn btn-block btn-success" @click="sub2()">同意条款并注册</button>
+                    </div>
+                    <div class="card-footer p-2">
+                        <div class="row">
+                            <div class="col-6">
+                                <button class="btn btn-block btn-facebook" type="button" onclick="next()">
+                                    <span>学员</span>
+                                </button>
+                            </div>
+                            <div class="col-6">
+                                <button class="btn btn-block btn-twitter" type="button" onclick="cancel()">
+                                    <span>教练</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="div2" class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card mx-2">
+                    <div class="card-block p-2">
+                        <h3>学员注册</h3>
+                        <p class="text-muted">学员，欢迎</p>
+                        <div class="input-group mb-1">
+                            <span class="input-group-addon"><i class="icon-user"></i>
+                            </span>
+                            <input type="text" id="num" class="form-control" placeholder="账号" onkeyup="checkAccount()" v-model="UserAccount">
+                            <span id="num1"></span>
+                        </div>
+                        <div class="input-group mb-1">
+                            <span class="input-group-addon"><i class="icon-user"></i>
+                            </span>
+                            <input type="text" id="name" class="form-control" placeholder="姓名" onkeyup="checkName()" v-model="UserName">
+                            <span id="name1"></span>
+                        </div>
+
+                        <div class="input-group mb-1">
+                            <span class="input-group-addon"><i class="icon-phone"></i>
+                            </span>
+                            <input type="text" id="tel" class="form-control" placeholder="手机号码"onblur="checkTel()" v-model="UserPhone">
+                            <span id="tell"></span>
+                        </div>
+
+                        <div class="input-group mb-1">
+                        <span class="input-group-addon"><i class="icon-check"></i>
+                        </span>
+                            <input type="text" id="idn" class="form-control" placeholder="身份证号码" onblur="checkID()" v-model="UserID">
+                            <span id="idn1"></span>
+                        </div>
+
+                        <div class="input-group mb-1">
+                            <span class="input-group-addon"><i class="icon-lock"></i>
+                            </span>
+                            <input type="password" id="psw1" class="form-control" placeholder="密码" onkeyup="checkSec()" v-model="UserPassword">
+                            <span id="psw0"></span>
+                        </div>
+
+                        <div class="input-group mb-1">
+                            <span class="input-group-addon"><i class="icon-lock"></i>
+                            </span>
+                            <input type="password" id="psw2" class="form-control" placeholder="确认密码" onblur="checkPwd()">
+                        </div>
+
+                        <button type="button" class="btn btn-block btn-success" @click="sub1()">同意条款并注册</button>
+                    </div>
+                    <div class="card-footer p-2">
+                        <div class="row">
+                            <div class="col-6">
+                                <button class="btn btn-block btn-facebook" type="button" onclick="next()">
+                                    <span>学员</span>
+                                </button>
+                            </div>
+                            <div class="col-6">
+                                <button class="btn btn-block btn-twitter" type="button" onclick="cancel()">
+                                    <span>教练</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <span>{{res}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Bootstrap and necessary plugins -->
+<script src="assets/js/libs/jquery.min.js"></script>
+<script>
+    $(function(){
+        $(".headerpage").load("public-html/head.html");
+    });
+</script>
+<script src="js/Vue.js"></script>
+<script>
+    var flag=0;//判断当前是否存在
+    //学院
+    var vm=new Vue({
+        el: "#div2",
+        data: {UserAccount: "", UserPassword: "", UserPhone: "", UserName: "", UserID: "", res: ""},
+        methods: {
+            sub1: function () {
+                $.ajax({
+                    url: "IsUser",
+                    data: {"UserAccount": vm.UserAccount},
+                    success: function (d) {
+                        if (d === "ok") {
+                            flag = 1;
+                            alert("当前用户存在");
+                        } else {
+                            flag = 0;
+                            alert("当前用户不存在");
+                        }
+                    },
+                    error: function () {
+                        alert("判断当前用户系统出错");
+                    }
+                })
+                if (flag === 0) {
+                    $.ajax({
+                        url: "RegUser",
+                        data: {
+                            "UserAccount": this.UserAccount,
+                            "UserPassword": this.UserPassword,
+                            "UserPhone": this.UserPhone,
+                            "UserName": this.UserName,
+                            "UserID": this.UserID
+                        },
+                        success: function (d) {
+                            if (d ==="ok") {
+                                location.href = "main.html";
+                            }
+                            else{
+                                alert("注册失败");
+                            }
+                        },
+                        error: function () {
+                            alert("系统出错");
+                        }
+                    })
+                } else {
+                    alert("当前用户已存在");
+                }
+
+            }
+        }
+
+    })
+    //教练
+    var CoPrice=0;
+    var CoInfo="暂无";
+    var CoWork=1;
+    var v=new Vue({
+        el: "#div1",
+        data: {CoAccount:"",CoPassword:"",CoPhone:"",CoName:"",CoID:"",CoSex:"",CoProvince:"",CoCity:"",CoPrice:"",CoInfo:"",CoWork:""},
+        methods: {
+            sub2: function () {
+                $.ajax({
+                    url: "RegCoach",
+                    data: {
+                        "CoAccount":v.CoAccount,
+                        "CoPassword":v.CoPassword,
+                        "CoPhone":v.CoPhone,
+                        "CoName":v.CoName,
+                        "CoID":v.CoID,
+                        "CoSex":v.CoSex,
+                        "CoProvince":v.CoProvince,
+                        "CoCity":v.CoCity,
+                        "CoPrice":CoPrice,
+                        "CoInfo":CoInfo,
+                        "CoWork":CoWork
+                    },
+                    success: function (d) {
+                        if (d ==="ok") {
+                            alert("教练注册成功");
+                            location.href = "main.html";
+                        }
+                        else{
+                            alert("当前用户名已存在注册失败");//当用户名存在的时候，会报错
+                        }
+                    },
+                    error: function () {
+                        alert("系统出错");
+                    }
+                })
+            }
+        }
+
+    })
+</script>
+</body>
+
+</html>

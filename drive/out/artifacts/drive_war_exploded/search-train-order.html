@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keyword" content="HTML, CSS, JavaScript">
+    <!-- 网页标题前的图标 -->
+    <link rel="shortcut icon" href="img/favicon.png">
+    <title>search-train-main</title>
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/simple-line-icons.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <!--    引用-->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script type="text/javascript" src="assets/js/libs/Vue.js"></script>
+    <script src="assets/js/libs/jquery.min.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
+<!-- 头部 -->
+<div class="headerpage"></div>
+<!-- 主体 -->
+<div class="app-body">
+    <!-- 侧边导航栏 -->
+    <div class="navpage"></div>
+    <!-- 中心内容 -->
+    <main class="main">
+        <!-- 当前位置 -->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">当前位置</li>
+            <li class="breadcrumb-item"><a href="main.html">首页</a>
+            </li>
+            <li class="breadcrumb-item active">预约教练</li>
+        </ol>
+        <!--每个界面代码添加位置-->
+        <div class="container-fluid">
+            <div class="animated fadeIn">
+                <!--从这开始加-->
+                <div id="order">
+                    <el-card class="box-card">
+                        <div slot="header">
+                            <span>教练信息</span>
+                        </div>
+                        <div class="text item">
+                             <span  v-if="Person[0].coSex == '男'">
+                        <img src="img/Image/user_man.png" height="90" width="90"/>
+                    </span>
+                            <span  v-if="Person[0].coSex == '女'">
+                         <img src="img/Image/user_woman.png" height="90" width="90"/>
+                    </span>
+                            <p>姓名：{{Person[0].coName}}</p>
+                            <p>性别：{{Person[0].coSex}}</p>
+                            <p>所在地：{{Person[0].coProvince}}{{Person[0].coCity}}</p>
+                            <p>联系方式：{{Person[0].coPhone}}</p>
+                            <p>个人简介：{{Person[0].coInfo}}</p>
+                        </div>
+                    </el-card>
+                    <br><br>
+                    <el-form>
+                        <el-form-item label="时间安排：">
+                            <el-table
+                                    :data="tableData"
+                                    border
+                                    style="width: 50%">
+                                <el-table-column
+                                        prop="time"
+                                        label="日期"
+                                        fixed
+                                        width="100">
+                                </el-table-column>
+                                <el-table-column label="am" prop="am">
+                                    <template slot-scope="scope">
+                                        <span  v-if="scope.row.am == 0" style="color:rgb(84, 195, 29);">空闲</span>
+                                        <span  v-if="scope.row.am == 1" style="color:red;">已预约</span>
+                                    </template>
+                                </el-table-column>
+                                <el-table-column label="pm" prop="pm">
+                                    <template slot-scope="scope">
+                                        <span  v-if="scope.row.pm == 0" style="color:rgb(84, 195, 29);">空闲</span>
+                                        <span  v-if="scope.row.pm == 1" style="color:red;">已预约</span>
+                                    </template>
+                                </el-table-column>
+                            </el-table>
+                        </el-form-item>
+                        <el-form-item label="预约时间：">
+                            <div>
+                                <el-date-picker
+                                        v-model="selectDay"
+                                        type="date"
+                                        placeholder="选择日期"
+                                        value-format="yyyy-MM-dd"
+                                        format="yyyy 年 MM 月 dd 日">
+                                </el-date-picker>
+                                <el-switch
+                                        v-model="selectTime"
+                                        active-text="pm"
+                                        inactive-text="am">
+                                </el-switch>
+                            </div>
+                        </el-form-item>
+                        <el-form-item>
+                            <el-button type="success" round @click="Order">预约</el-button>
+                            <el-button type="danger" round>返回</el-button>
+                        </el-form-item>
+                    </el-form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</div>
+<div class="footpage"></div>
+
+<script>
+    $(function(){
+        $(".headerpage").load("public-html/head.html");
+        $(".navpage").load("public-html/nav.html");
+        $(".footpage").load("public-html/foot.html");
+    });
+</script>
+<script>
+    var v=new Vue({
+        el:"#order",
+        data() {
+            return{
+                Person:{},
+                tableData: [],
+                pickerOptions: {disabledDate(time) {return time.getTime() > Date.now();},},
+                selectDay:'',
+                selectTime:false
+            }
+        },
+        created:function () {
+            $.ajax({
+                url: "GetCoach",
+                type:"get",
+                datatype:"json",
+                contentType:"application/json",
+                success:function (d) {
+                    v.Person=JSON.parse(d);
+                    console.log(v.Person);
+                },
+                error:function () {
+                    console.log("error!");
+                }
+            });
+
+            $.ajax({
+                url: "GetAppointmentTime",
+                type:"get",
+                success:function (d) {
+                    v.tableData = JSON.parse(d);
+                    console.log(v.tableData);
+                },
+                error:function () {console.log("error!");}
+            });
+        },
+        methods: {
+            Order:function() {
+                $.ajax({
+                    url: "OrdAppointment",
+                    type:"get",
+                    data:{
+                        "date":v.selectDay,
+                        "date2":v.selectTime
+                    },
+                    success:function (d) {
+                        alert(d);
+                        if(d==="1")
+                            alert("恭喜你，预约成功！");
+                        else if(d==="2")
+                            alert("请登录！");
+                        else
+                            console.log("d="+d);
+                    },
+                    error:function () {console.log("error!");}
+                });
+
+            },
+        }
+    })
+</script>
+
+
+</body>
+</html>

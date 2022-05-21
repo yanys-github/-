@@ -1,0 +1,424 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 包含头部信息用于适应不同设备 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--  定义web页面描述： -->
+    <meta name="description" content="">
+    <!--  定义页面作者： -->
+    <meta name="author" content="">
+    <!-- 定义文档关键词，用于搜索引擎： -->
+    <meta name="keyword" content="HTML, CSS, JavaScript">
+    <!-- 网页标题前的图标 -->
+    <link rel="shortcut icon" href="img/favicon.png">
+    <title>个人中心</title>
+    <!-- Icons -->
+    <!-- fa 图标库 -->
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/simple-line-icons.css" rel="stylesheet">
+    <!-- Main styles for this application -->
+    <link href="css/style.css" rel="stylesheet">
+    <!--    引用-->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script type="text/javascript" src="assets/js/libs/Vue.js"></script>
+    <script src="assets/js/libs/jquery.min.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+    <style>
+        .a{ cursor:hand }
+        .pp{
+            position:absolute;top:965px;width:870px;height:30px;background-color: #c0c0c0;
+            left:161px; }
+
+        .bg5
+        {
+            width: 1200px;
+            height: 300px;
+            display:block;
+            margin-left:auto;
+            margin-right:auto;
+        }
+        .b-title {
+            width: 1200px;
+            list-style-type: none;
+            display:block;
+            margin-left:auto;
+            margin-right:auto;
+            overflow: hidden;
+            background-color: #ffffff;
+        }
+
+        li {
+            float: left;
+        }
+        li a {
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .b-title a:hover {
+            background-color: #91d5ff;
+        }
+        .main1
+        {  position:absolute;
+
+            left:161px;
+
+            top:365px;
+            width: 870px;
+            height: 600px;
+            display:block;
+            margin-left:auto;
+            margin-right:auto;
+            background-color: #ffffff;
+
+        }
+
+        .main11
+        {
+            width: 150px;
+            height: 200px;
+            display: block;
+
+        }
+        .main111
+        {
+            width: 300px;
+            height: 500px;
+            left: 161px;
+            top: 365px;
+            text-align: center;
+
+        }
+        .main111
+        {
+            position: relative;
+            left: 50px;
+            top: 150px;
+
+        }
+        .main112
+        {
+
+            left: 390px;
+            top: 90px;
+            position: absolute;
+
+
+        }
+
+        .class1
+        {
+            width: 250px;
+            height: 30px;
+            -webkit-appearance:none;
+            -moz-appearance: none;
+
+
+            border-radius:4px;
+            border:1px solid #c8cccf;
+            color:#6a6f77;
+            outline:0;
+
+        }
+
+        .button
+        {
+            border-width: 0px; /* 边框宽度 */
+            border-radius: 3px; /* 边框半径 */
+            background: #1E90FF; /* 背景颜色 */
+            cursor: pointer; /* 鼠标移入按钮范围时出现手势 */
+            outline: none; /* 不显示轮廓线 */
+            font-family: Microsoft YaHei; /* 设置字体 */
+            color: white; /* 字体颜色 */
+            font-size: 17px; /* 字体大小 */
+
+
+        }
+        .button:hover{
+            background-color:#4183c4;
+        }
+
+        #calendar{
+            position:absolute;
+            display:block;
+
+            right:161px;
+
+            top:265px;
+            background-color: #fff;
+            width: 310px;
+            height: 200px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 100px auto;
+            text-align: center;
+        }
+        #calendar .yearMon{
+            background-color: #ddd;
+            padding: 5px 0;
+        }
+        #calendar .date {
+            color: #0099FF;
+            font-size: 96px;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
+<!-- 头部 -->
+<div class="headerpage"></div>
+<!-- 图片外加导航栏 -->
+<div> <img src="img/bg5.jpg" class="bg5">
+    <ul class="b-title">
+
+        <li></li>
+
+        <li class="l1" id="d1"><a class="a1" id="1"href="#">我的资料</a></li>
+        <li class="l1" id="d2"><a class="a1" id="2" href="#">我的错题</a></li>
+        <li class="l1" id="d3"><a class="a1" id="3" href="#">我的预约</a></li>
+
+    </ul>
+
+</div>
+<!-- 左边的数据显示那一部分-->
+<div id=app class="main1">
+    <div class="main11" id="i1">
+        <div class="main111">
+            <img src="img/man.png" class="sex" width="200px" height="200px" >
+            <br><br><br><br><br>
+            <button type="button" class="button" @click="update" >保存修改</button>
+        </div>
+        <div class="main112" >
+            <h2>个人资料:</h2><br><br>
+
+            <form action="" method="post">
+                <p >我的昵称：&nbsp;&nbsp;<input type="text" id="11" class="class1" placeholder="昵称" v-model="name" readonly="readonly" ></p>
+                <p >我的密码：&nbsp;&nbsp;<input type="text" id="psw1" class="class1" placeholder="密码"v-model="psw"></p>
+
+                <p > 我的电话：&nbsp;&nbsp;<input type="text" id="tel" class="class1" placeholder="手机号码" v-model="tel"></p>
+
+                <p > 账户余额：&nbsp;&nbsp;<input type="text" id="money" class="class1" placeholder="账户余额" readonly="readonly"  v-model="money" ></p>
+
+                <p >我的名字：&nbsp;&nbsp;<input type="text" id="tname" class="class1" placeholder="真实姓名 " readonly="readonly" v-model="tname"></p>
+
+                <p > 身份证号：&nbsp;&nbsp;<input type="text" id="idn" class="class1" placeholder="身份证号码" readonly="readonly" v-model="idn"></p>
+
+
+            </form>
+        </div>
+
+    </div>
+    <div class="main12" id="i2">
+        <!--我的错题添加到这部分--></div>
+
+    <div class="main13" id="i3">
+        <!--我的预约添加到这部分-->
+        <div id="Tables">
+            <el-table
+                    :data="tableData.filter(data => !search || data.coName.toLowerCase().includes(search.toLowerCase())||data.appDate.toLowerCase().includes(search.toLowerCase()))"
+                    height="300" stripe border>
+                <el-table-column prop="appID" label="预约单号"></el-table-column>
+                <el-table-column prop="coName" label="教练"></el-table-column>
+                <el-table-column prop="appDate" label="预约日期"></el-table-column>
+                <el-table-column prop="appDate3" label="预约时间"></el-table-column>
+                <el-table-column>
+                    <template slot="header" slot-scope="scope">
+                        <el-input
+                                v-model="search"
+                                size="mini"
+                                placeholder="输入关键字搜索"></el-input>
+                    </template>
+                    <template slot-scope="scope">
+                        <el-button type="text" @click="cancel(scope.row)">取消预约</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+        </div>
+    </div>
+</div>
+
+<div class="main2" id="calendar">
+    <div class="yearMon"></div>
+    <div class="date"></div>
+    <div class="week"></div>
+
+
+</div>
+<p class="pp">  Copyright © NIT造作小分队</p>
+<script>  $(function(){
+    // 获取时间
+    var nowDate = new Date();
+    var year = nowDate.getFullYear();
+    var month = nowDate.getMonth() + 1 < 10 ? "0" + (nowDate.getMonth() + 1) : nowDate.getMonth() + 1;
+    var date = nowDate.getDate() < 10 ? "0" + nowDate.getDate() : nowDate.getDate();
+    var week = "星期" + "日一二三四五六".split(/(?!\b)/)[nowDate.getDay()];
+    // 添加文本内容到相应的div
+    $(".yearMon").text(year+"年"+month+"月");
+    $(".date").text(date);
+    $(".week").text(week);
+});
+</script>
+<script type="text/javascript">
+
+    window.onload = function(){
+        var arr = document.getElementsByClassName('a1');
+        for(var i = 0;i<arr.length;i++){
+            arr[i].onclick = function(){
+                if (this.id == '1' )
+                {
+                    document.getElementById("i1").style.display = 'block' ;
+                    document.getElementById("i2").style.display = 'none' ;
+                    document.getElementById("i3").style.display = 'none' ;
+                }
+                else if(this.id == '2')
+                {
+                    document.getElementById("i1").style.display = 'none' ;
+                    document.getElementById("i2").style.display = 'block' ;
+                    document.getElementById("i3").style.display = 'none' ;
+                }
+                else{
+                    document.getElementById("i1").style.display = 'none' ;
+                    document.getElementById("i2").style.display = 'none' ;
+                    document.getElementById("i3").style.display = 'block' ;
+                }
+
+            }
+        }
+    }
+</script>
+
+<!-- Bootstrap and necessary plugins -->
+
+<script>
+    $(function(){
+        $(".headerpage").load("public-html/head.html");
+
+    });
+</script>
+<script type="text/javascript">
+
+    var vm=new Vue({
+        el:"#app",
+        data:function () {
+            return{
+                name:'',psw:'', tel:'', money:'', tname:'', idn:'',
+                tableData:[],search:"",flag:null
+            }
+        },
+        created:function() {
+            this.load();
+            this.loading();
+        },
+        methods:{
+            loading:function(){
+                self=this;
+                $.ajax({
+                    url:"SearchAppointmentUser",
+                    type:"get",
+                    datatype:"json",
+                    contentType:"application/json",
+                    success: function(data) {
+                        self.tableData = JSON.parse(data);
+                        console.log(self.tableData);
+                    },
+                    error:function () {alert("data错误！");}
+                })
+            },
+            cancel:function (row) {
+                self=this;
+                $.ajax({
+                    url:"CancelAppointment",
+                    type:"get",
+                    data:{"AppID":row.appID},
+                    success: function(data) {
+                        self.flag=data;
+                    },
+                    error:function () {alert("data错误！");}
+                });
+                if(self.flag)
+                {
+                    this.$notify({
+                        title: '提示',
+                        message: '取消成功！',
+                        type: 'success',
+                        duration: 0
+                    });
+                }
+                else
+                {
+                    this.$notify({
+                        title: '警告',
+                        message: '确认取消订单？（仅提醒一次）',
+                        type: 'warning'
+                    });
+                }
+                this.loading();
+            },
+            load:function () {
+                self=this;
+                $.ajax({
+                    url: "LoadStudent",
+                    type: "post",
+                    datatype:"json",
+                    success: function (data) {
+
+                        var jsonobj=JSON.parse(data);
+
+                        self.name=jsonobj[0].userAccount;
+
+                        self.psw=jsonobj[0].userPassword;
+                        console.log(vm.name);
+                        self.tel=jsonobj[0].userPhone;
+                        self.money=jsonobj[0].userAmount;
+                        self.tname=jsonobj[0].userName;
+                        self.idn=jsonobj[0].userID;
+
+                    },
+
+                    error: function () {
+                    }
+                })
+            },
+            update:function () {
+                self=this;
+                $.ajax({
+                    url:"UpdateUser",
+                    type:"post",
+                    data:{"UserAccount":self.name,"UserPassword":self.psw,"UserPhone":self.tel},
+                    success:function (d) {
+                        console.log(d);
+                        if(d==="ok")
+                        {
+                            alert("修改成功");
+                        }
+                        else
+                        {
+                            alert("修改失败");
+
+                        }
+
+                    },
+                    error:function () {
+                        alert("系统出错");
+
+                    }
+
+                })
+
+
+            }
+        }
+
+    })
+</script>
+
+</body>
+
